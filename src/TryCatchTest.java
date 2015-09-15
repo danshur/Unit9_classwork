@@ -7,9 +7,15 @@ public class TryCatchTest {
 		String reply = JOptionPane.showInputDialog(null, prompt);
 		int num = 0;
 		try {
-			num = Integer.parseInt(reply);
-		} catch (NumberFormatException e) {
-			JOptionPane.showMessageDialog(null, error);
+			// check for null
+			if (reply == null) {
+				throw new Exception("Invalid operation; no data entered.");
+			} else {
+				num = Integer.parseInt(reply);
+			}
+		} catch (Exception exc) {
+			// JOptionPane.showMessageDialog(null, error);
+			JOptionPane.showMessageDialog(null, error + "\n" + exc.getMessage());
 		}
 	}
 }
